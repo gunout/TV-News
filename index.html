@@ -82,7 +82,7 @@
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
             background: #000;
             border-radius: 10px;
             overflow: hidden;
@@ -135,6 +135,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .control-btn:hover {
@@ -193,12 +194,14 @@
             text-align: center;
             font-weight: bold;
             text-shadow: 0 0 5px var(--neon-pink);
+            flex-shrink: 0;
         }
 
         .volume-control {
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-shrink: 0;
         }
 
         .volume-slider {
@@ -391,6 +394,7 @@
             margin-right: 15px;
             border: 2px solid rgba(255, 16, 240, 0.5);
             transition: all 0.3s;
+            flex-shrink: 0;
         }
 
         .channel-card:hover img {
@@ -400,12 +404,16 @@
 
         .channel-details {
             flex: 1;
+            min-width: 0;
         }
 
         .channel-title {
             font-weight: bold;
             margin-bottom: 5px;
             font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .channel-country {
@@ -425,6 +433,7 @@
             padding: 20px;
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.7);
+            grid-column: 1 / -1;
         }
 
         .pagination {
@@ -464,212 +473,52 @@
             color: #ff6b6b;
         }
 
-        /* Styles pour les écrans mobiles */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-            }
-            
-            .player-container {
-                padding: 15px;
-                margin-bottom: 20px;
-            }
-            
-            .video-wrapper {
-                border-radius: 8px;
-            }
-            
-            .video-controls {
-                padding: 15px;
-                gap: 10px;
-                flex-wrap: wrap;
-            }
-            
-            .control-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-            
-            .progress-bar {
-                order: 3;
-                width: 100%;
-                margin-top: 10px;
-            }
-            
-            .time-display {
-                min-width: 80px;
-                font-size: 0.8rem;
-                order: 2;
-            }
-            
-            .volume-control {
-                order: 1;
-            }
-            
-            .volume-slider {
-                width: 60px;
-            }
-            
-            .channel-info {
-                padding: 10px;
-            }
-            
-            .channel-logo {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .channel-name {
-                font-size: 1rem;
-            }
-            
-            .controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .search-container {
-                width: 100%;
-                min-width: auto;
-            }
-            
-            .search-input {
-                padding: 12px 40px 12px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .filter-buttons {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .filter-btn {
-                padding: 8px 15px;
-                font-size: 0.8rem;
-            }
-            
-            .channels-container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                margin-top: 20px;
-            }
-            
-            .channel-card {
-                padding: 12px;
-            }
-            
-            .channel-card img {
-                width: 50px;
-                height: 50px;
-                margin-right: 12px;
-            }
-            
-            .channel-title {
-                font-size: 0.9rem;
-            }
-            
-            .channel-country {
-                font-size: 0.7rem;
-            }
-            
-            .pagination {
-                margin-top: 20px;
-                gap: 5px;
-            }
-            
-            .page-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 0.8rem;
-            }
-            
-            .error-message {
-                font-size: 0.9rem;
-                padding: 8px;
-            }
+            .container { padding: 10px; }
+            h1 { font-size: 1.8rem; margin-bottom: 15px; }
+            .player-container { padding: 15px; margin-bottom: 20px; }
+            .video-wrapper { border-radius: 8px; }
+            .video-controls { padding: 15px; gap: 10px; flex-wrap: wrap; }
+            .control-btn { width: 35px; height: 35px; font-size: 1rem; }
+            .progress-bar { order: 3; width: 100%; margin-top: 10px; }
+            .time-display { min-width: 80px; font-size: 0.8rem; order: 2; }
+            .volume-control { order: 1; }
+            .volume-slider { width: 60px; }
+            .channel-info { padding: 10px; }
+            .channel-logo { width: 40px; height: 40px; }
+            .channel-name { font-size: 1rem; }
+            .controls { flex-direction: column; gap: 15px; }
+            .search-container { width: 100%; min-width: auto; }
+            .search-input { padding: 12px 40px 12px 15px; font-size: 0.9rem; }
+            .filter-buttons { width: 100%; justify-content: center; }
+            .filter-btn { padding: 8px 15px; font-size: 0.8rem; }
+            .channels-container { grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
+            .channel-card { padding: 12px; }
+            .channel-card img { width: 50px; height: 50px; margin-right: 12px; }
+            .channel-title { font-size: 0.9rem; }
+            .channel-country { font-size: 0.7rem; }
+            .pagination { margin-top: 20px; gap: 5px; }
+            .page-btn { width: 35px; height: 35px; font-size: 0.8rem; }
+            .error-message { font-size: 0.9rem; padding: 8px; }
         }
 
-        /* Styles pour les très petits écrans */
         @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .player-container {
-                padding: 10px;
-            }
-            
-            .video-controls {
-                padding: 10px;
-            }
-            
-            .control-btn {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-            }
-            
-            .time-display {
-                font-size: 0.7rem;
-                min-width: 70px;
-            }
-            
-            .volume-slider {
-                width: 50px;
-            }
-            
-            .channel-info {
-                padding: 8px;
-            }
-            
-            .channel-logo {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .channel-name {
-                font-size: 0.9rem;
-            }
-            
-            .search-input {
-                padding: 10px 35px 10px 12px;
-                font-size: 0.85rem;
-            }
-            
-            .filter-btn {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-            }
-            
-            .channel-card {
-                padding: 10px;
-            }
-            
-            .channel-card img {
-                width: 45px;
-                height: 45px;
-                margin-right: 10px;
-            }
-            
-            .channel-title {
-                font-size: 0.85rem;
-            }
-            
-            .channel-country {
-                font-size: 0.65rem;
-            }
-            
-            .page-btn {
-                width: 30px;
-                height: 30px;
-                font-size: 0.7rem;
-            }
+            h1 { font-size: 1.5rem; }
+            .player-container { padding: 10px; }
+            .video-controls { padding: 10px; }
+            .control-btn { width: 30px; height: 30px; font-size: 0.9rem; }
+            .time-display { font-size: 0.7rem; min-width: 70px; }
+            .volume-slider { width: 50px; }
+            .channel-info { padding: 8px; }
+            .channel-logo { width: 35px; height: 35px; }
+            .channel-name { font-size: 0.9rem; }
+            .search-input { padding: 10px 35px 10px 12px; font-size: 0.85rem; }
+            .filter-btn { padding: 6px 12px; font-size: 0.75rem; }
+            .channel-card { padding: 10px; }
+            .channel-card img { width: 45px; height: 45px; margin-right: 10px; }
+            .channel-title { font-size: 0.85rem; }
+            .channel-country { font-size: 0.65rem; }
+            .page-btn { width: 30px; height: 30px; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -681,12 +530,12 @@
 
         <div class="player-container">
             <div class="video-wrapper" id="video-wrapper">
-                <video id="video-player"></video>
+                <video id="video-player" playsinline crossorigin="anonymous"></video>
                 <div class="loading-overlay" id="loading" style="display: none;">
                     <div class="loading-spinner"></div>
                 </div>
                 <div class="video-controls" id="video-controls">
-                    <button class="control-btn" id="play-pause-btn">
+                    <button class="control-btn" id="play-pause-btn" title="Lecture/Pause">
                         <i class="fas fa-play"></i>
                     </button>
                     <div class="progress-bar" id="progress-bar">
@@ -694,7 +543,7 @@
                     </div>
                     <div class="time-display" id="time-display">00:00 / 00:00</div>
                     <div class="volume-control">
-                        <button class="control-btn" id="volume-btn">
+                        <button class="control-btn" id="volume-btn" title="Muet">
                             <i class="fas fa-volume-up"></i>
                         </button>
                         <div class="volume-slider" id="volume-slider">
@@ -704,13 +553,13 @@
                     <button class="control-btn" id="hide-controls-btn" title="Masquer/Afficher les contrôles">
                         <i class="fas fa-eye-slash"></i>
                     </button>
-                    <button class="control-btn" id="fullscreen-btn">
+                    <button class="control-btn" id="fullscreen-btn" title="Plein écran">
                         <i class="fas fa-expand"></i>
                     </button>
                 </div>
             </div>
             <div class="channel-info">
-                <img id="current-logo" src="https://picsum.photos/seed/tv/50/50.jpg" alt="Logo de la chaîne" class="channel-logo">
+                <img id="current-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%23ff10f0' opacity='0.3'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' dy='.35em' fill='%23ff10f0'%3E📺%3C/text%3E%3C/svg%3E" alt="Logo de la chaîne" class="channel-logo">
                 <div id="current-name" class="channel-name">Sélectionnez une chaîne pour commencer</div>
             </div>
             <div id="error-message" class="error-message" style="display: none;"></div>
@@ -723,10 +572,10 @@
             </div>
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Toutes</button>
-                <button class="filter-btn" data-filter="international">International</button>
-                <button class="filter-btn" data-filter="local">Local</button>
-                <button class="filter-btn" data-filter="economies">Economies</button>
                 <button class="filter-btn" data-filter="news">News</button>
+                <button class="filter-btn" data-filter="economies">Economies</button>
+                <button class="filter-btn" data-filter="divertissement">Divertissement</button>
+                <button class="filter-btn" data-filter="science">Science</button>
             </div>
         </div>
 
@@ -755,8 +604,6 @@ https://lukentvlive.vgcdn.net/v1/master/cef183924f24adfa3d5d7601c3a17769082c0c2b
 https://lukentvlive.vgcdn.net/v1/master/cef183924f24adfa3d5d7601c3a17769082c0c2b/Revn/index.m3u8
 #EXTINF:-1 tvg-name="CNN" tvg-logo="https://i.imgur.com/vyrc1I1.png" tvg-id="CNN.us" tvg-chno="1" tvg-country="US" group-title="USA",CNN
 https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_0_3564000.m3u8
-#EXTINF:-1 tvg-name="CNBC" tvg-logo="https://i.imgur.com/BTasyOy.png" tvg-id="CNBC.us" tvg-chno="2" tvg-country="US" group-title="USA",CNBC Ⓨ
-https://www.youtube.com/c/CNBC/live
 #EXTINF:-1 tvg-name="Bloomberg" tvg-logo="https://i.imgur.com/VnCcH73.png" tvg-id="BloombergTelevision.us" tvg-chno="3" tvg-country="US" group-title="USA",Bloomberg
 https://bloomberg.com/media-manifest/streams/us.m3u8
 #EXTINF:-1 tvg-name="ABC News" tvg-logo="https://i.imgur.com/7sJLzKi.png" tvg-id="ABCNews.us" tvg-chno="4" tvg-country="US" group-title="USA",ABC News
@@ -781,8 +628,6 @@ https://cinedigm.vo.llnwd.net/conssui/amagi_hls_data_xumo1234A-docuramaA/CDN/mas
 https://drybar-drybarcomedy-1-us.samsung.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-name="Music Channel" tvg-logo="http://media.boni-records.com/logo.png" tvg-id="Boni-Records.com.us" tvg-chno="3" tvg-country="US" group-title="USA",Music Channel
 http://media.boni-records.com/index.m3u8
-#EXTINF:-1 tvg-name="Stryk TV" tvg-logo="https://stryktv.com/wp-content/uploads/2021/08/StrykTV-MTS.png" tvg-id="StrykTV.us" tvg-chno="4" tvg-country="US" group-title="USA",Stryk TV
-https://FFFFFFF110156200.tvustream.com/ryfy.m3u8
 #EXTINF:-1 tvg-name="FOX Live Now" tvg-logo="https://graph.facebook.com/livenowfox/picture?width=200&height=200" tvg-id="FOXLiveNow.us" tvg-chno="5" tvg-country="US" group-title="USA",FOX Live Now
 https://fox-foxnewsnow-vizio.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-name="Cheddar" tvg-logo="https://graph.facebook.com/cheddar/picture?width=200&height=200" tvg-id="Cheddar.us" tvg-chno="6" tvg-country="US" group-title="USA",Cheddar
@@ -791,28 +636,26 @@ https://hls.livecdn.io/cheddar.com/cheddar/playlist.m3u8
 https://content.uplynk.com/channel/6c0bd0f94b1d4526a98676e9699a10ef.m3u8
 #EXTINF:-1 tvg-name="WeatherNation" tvg-logo="https://graph.facebook.com/WeatherNation/picture?width=200&height=200" tvg-id="WeatherNation.us" tvg-chno="8" tvg-country="US" group-title="USA",WeatherNation
 https://d2ferbiwcx1539.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-8zd06wicndthf-ssai-prd/WNNationalSamsung/WNNationalSamsung.m3u8
-#EXTINF:-1 tvg-name="America's Voice" tvg-logo="https://graph.facebook.com/RealAmericasVoice/picture?width=200&height=200" tvg-id="AmericasVoice.us" tvg-chno="9" tvg-country="US" group-title="USA",America's Voice
-https://d2jiqiw4g5lj5k.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/AmericasVoiceChannel-prod/AVSamsung/AVSamsung.m3u8
 #EXTINF:-1 tvg-name="Newsmax TV" tvg-logo="https://graph.facebook.com/newsmax/picture?width=200&height=200" tvg-id="Newsmax.us" tvg-chno="10" tvg-country="US" group-title="USA",Newsmax TV
 https://nmxlive.akamaized.net/hls/live/529965/Live_1/index.m3u8
 #EXTINF:-1 tvg-name="America TeVe" tvg-logo="https://pbs.twimg.com/profile_images/2067373416173260801/9cUCY5wX_200x200.jpg" tvg-id="AmericaTeVe.us" tvg-chno="11" tvg-country="US" group-title="USA",America TeVe
 https://live.gideo.video/americateve2/master.m3u8
 #EXTINF:-1 tvg-name="Botflix TV" tvg-logo="https://i.imgur.com/JBEM8lP.png" tvg-chno="12" tvg-country="US" group-title="USA",Botflix TV
-https://hls.botflix.tv/tv/index.m3u8
-#EXTINF:-1 tvg-name="Botflix Radioo" tvg-logo="https://i.imgur.com/JBEM8lP.png" tvg-chno="13" tvg-country="US" group-title="USA",Botflix Radioo
-https://hls.botflix.tv/radioo/index.m3u8; 
+https://hls.botflix.tv/tv/index.m3u8`;
 
         // Variables globales
         let video;
-        let hls;
+        let hls = null;
         let channels = [];
         let filteredChannels = [];
         let currentPage = 1;
         const channelsPerPage = 20;
         let currentChannel = null;
         let activeFilter = 'all';
+        let searchTerm = '';
         let controlsVisible = true;
-        let controlsTimeout;
+        let controlsTimeout = null;
+        let loadingTimeout = null;
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
@@ -824,92 +667,112 @@ https://hls.botflix.tv/radioo/index.m3u8;
         // Initialiser le lecteur vidéo
         function initializePlayer() {
             video = document.getElementById('video-player');
-            
-            // Configurer les contrôles personnalisés
             setupVideoControls();
+            updateVolumeIcon(video.volume);
         }
 
         // Configurer les contrôles vidéo personnalisés
         function setupVideoControls() {
             const playPauseBtn = document.getElementById('play-pause-btn');
             const progressBar = document.getElementById('progress-bar');
-            const progressFilled = document.getElementById('progress-filled');
             const volumeSlider = document.getElementById('volume-slider');
-            const volumeFilled = document.getElementById('volume-filled');
             const volumeBtn = document.getElementById('volume-btn');
             const fullscreenBtn = document.getElementById('fullscreen-btn');
             const hideControlsBtn = document.getElementById('hide-controls-btn');
-            const timeDisplay = document.getElementById('time-display');
             const videoWrapper = document.getElementById('video-wrapper');
             const videoControls = document.getElementById('video-controls');
 
-            // Play/Pause
-            playPauseBtn.addEventListener('click', togglePlayPause);
+            // Play/Pause (bouton uniquement)
+            playPauseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlayPause();
+            });
+
+            // Clic sur la vidéo = play/pause
             video.addEventListener('click', togglePlayPause);
 
             // Progress bar
             video.addEventListener('timeupdate', updateProgress);
-            progressBar.addEventListener('click', seek);
+            progressBar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                seek(e);
+            });
 
             // Volume
-            volumeSlider.addEventListener('click', changeVolume);
-            volumeBtn.addEventListener('click', toggleMute);
+            volumeSlider.addEventListener('click', (e) => {
+                e.stopPropagation();
+                changeVolume(e);
+            });
+            volumeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMute();
+            });
 
             // Fullscreen
-            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            fullscreenBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFullscreen();
+            });
 
             // Hide/Show controls
-            hideControlsBtn.addEventListener('click', toggleControlsVisibility);
+            hideControlsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleControlsVisibility();
+            });
 
             // Mettre à jour le temps
             video.addEventListener('loadedmetadata', updateTimeDisplay);
             video.addEventListener('timeupdate', updateTimeDisplay);
 
-            // Afficher les contrôles au survol de la vidéo
+            // Afficher les contrôles au survol
             videoWrapper.addEventListener('mousemove', showControlsTemporarily);
-            videoWrapper.addEventListener('mouseleave', hideControlsAfterDelay);
-
-            // Afficher les contrôles lorsque la vidéo est en pause
-            video.addEventListener('pause', () => {
-                if (controlsVisible === false) {
-                    toggleControlsVisibility();
-                }
+            videoWrapper.addEventListener('mouseleave', () => {
+                if (!video.paused) scheduleHideControls();
             });
 
-            // Masquer les contrôles lorsque la vidéo est en lecture
+            // Pause = afficher les contrôles
+            video.addEventListener('pause', () => {
+                showControls();
+            });
+
+            // Lecture = masquer après délai
             video.addEventListener('play', () => {
-                if (controlsVisible === true) {
-                    hideControlsAfterDelay();
-                }
+                scheduleHideControls();
+            });
+
+            // Masquer le loading quand la lecture démarre
+            video.addEventListener('playing', () => {
+                showLoading(false);
             });
         }
 
         function togglePlayPause() {
             const icon = document.querySelector('#play-pause-btn i');
-            
             if (video.paused) {
-                video.play();
+                video.play().catch(err => {
+                    console.error('Erreur de lecture:', err);
+                    showError('Impossible de lancer la lecture');
+                });
                 icon.className = 'fas fa-pause';
-                hideControlsAfterDelay();
             } else {
                 video.pause();
                 icon.className = 'fas fa-play';
-                if (controlsVisible === false) {
-                    toggleControlsVisibility();
-                }
             }
         }
 
         function updateProgress() {
             const progressFilled = document.getElementById('progress-filled');
-            const percent = (video.currentTime / video.duration) * 100;
-            progressFilled.style.width = percent + '%';
+            if (video.duration && isFinite(video.duration)) {
+                const percent = (video.currentTime / video.duration) * 100;
+                progressFilled.style.width = percent + '%';
+            }
         }
 
         function seek(e) {
+            if (!video.duration || !isFinite(video.duration)) return;
             const progressBar = document.getElementById('progress-bar');
             const rect = progressBar.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
+            const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
             video.currentTime = percent * video.duration;
         }
 
@@ -917,61 +780,66 @@ https://hls.botflix.tv/radioo/index.m3u8;
             const volumeSlider = document.getElementById('volume-slider');
             const volumeFilled = document.getElementById('volume-filled');
             const rect = volumeSlider.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
-            
+            const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
             video.volume = percent;
+            video.muted = false;
             volumeFilled.style.width = (percent * 100) + '%';
-            
             updateVolumeIcon(percent);
         }
 
         function toggleMute() {
-            const volumeBtn = document.querySelector('#volume-btn i');
-            
-            if (video.muted) {
-                video.muted = false;
-                updateVolumeIcon(video.volume);
-            } else {
-                video.muted = true;
-                volumeBtn.className = 'fas fa-volume-mute';
-            }
+            video.muted = !video.muted;
+            updateVolumeIcon(video.muted ? 0 : video.volume);
         }
 
         function updateVolumeIcon(volume) {
             const volumeBtn = document.querySelector('#volume-btn i');
-            
-            if (volume === 0 || video.muted) {
+            const volumeFilled = document.getElementById('volume-filled');
+            if (video.muted || volume === 0) {
                 volumeBtn.className = 'fas fa-volume-mute';
+                volumeFilled.style.width = '0%';
             } else if (volume < 0.5) {
                 volumeBtn.className = 'fas fa-volume-down';
             } else {
                 volumeBtn.className = 'fas fa-volume-up';
             }
+            if (!video.muted) {
+                volumeFilled.style.width = (video.volume * 100) + '%';
+            }
         }
 
         function toggleFullscreen() {
             const videoWrapper = document.querySelector('.video-wrapper');
-            
             if (!document.fullscreenElement) {
-                videoWrapper.requestFullscreen();
+                (videoWrapper.requestFullscreen || videoWrapper.webkitRequestFullscreen || videoWrapper.msRequestFullscreen).call(videoWrapper);
             } else {
-                document.exitFullscreen();
+                (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen).call(document);
             }
         }
 
-        function toggleControlsVisibility() {
+        function showControls() {
             const videoControls = document.getElementById('video-controls');
             const hideControlsBtn = document.querySelector('#hide-controls-btn i');
-            
-            controlsVisible = !controlsVisible;
-            
+            controlsVisible = true;
+            videoControls.classList.remove('hidden');
+            hideControlsBtn.className = 'fas fa-eye-slash';
+            clearTimeout(controlsTimeout);
+        }
+
+        function hideControls() {
+            const videoControls = document.getElementById('video-controls');
+            const hideControlsBtn = document.querySelector('#hide-controls-btn i');
+            controlsVisible = false;
+            videoControls.classList.add('hidden');
+            hideControlsBtn.className = 'fas fa-eye';
+        }
+
+        function toggleControlsVisibility() {
             if (controlsVisible) {
-                videoControls.classList.remove('hidden');
-                hideControlsBtn.className = 'fas fa-eye-slash';
-                clearTimeout(controlsTimeout);
+                hideControls();
             } else {
-                videoControls.classList.add('hidden');
-                hideControlsBtn.className = 'fas fa-eye';
+                showControls();
+                scheduleHideControls();
             }
         }
 
@@ -979,22 +847,16 @@ https://hls.botflix.tv/radioo/index.m3u8;
             if (!controlsVisible) {
                 const videoControls = document.getElementById('video-controls');
                 videoControls.classList.remove('hidden');
-                
-                clearTimeout(controlsTimeout);
-                controlsTimeout = setTimeout(() => {
-                    if (!video.paused && controlsVisible === false) {
-                        videoControls.classList.add('hidden');
-                    }
-                }, 3000);
             }
+            clearTimeout(controlsTimeout);
+            scheduleHideControls();
         }
 
-        function hideControlsAfterDelay() {
+        function scheduleHideControls() {
             clearTimeout(controlsTimeout);
             controlsTimeout = setTimeout(() => {
-                if (!video.paused && controlsVisible === false) {
-                    const videoControls = document.getElementById('video-controls');
-                    videoControls.classList.add('hidden');
+                if (!video.paused && controlsVisible) {
+                    hideControls();
                 }
             }, 3000);
         }
@@ -1007,8 +869,7 @@ https://hls.botflix.tv/radioo/index.m3u8;
         }
 
         function formatTime(seconds) {
-            if (isNaN(seconds)) return '00:00';
-            
+            if (isNaN(seconds) || !isFinite(seconds)) return '00:00';
             const minutes = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
@@ -1017,67 +878,66 @@ https://hls.botflix.tv/radioo/index.m3u8;
         // Parser la playlist M3U
         function parseM3U() {
             const lines = m3uData.split('\n');
-            let channel = {};
-            
+            let channel = null;
+
             for (let i = 0; i < lines.length; i++) {
                 const line = lines[i].trim();
-                
-                if (line.startsWith('#EXTINF:-1')) {
-                    // Extraire les informations de la chaîne
-                    const nameMatch = line.match(/,(.+)$/);
-                    if (nameMatch) {
-                        channel.name = nameMatch[1].trim();
-                    }
-                    
-                    const logoMatch = line.match(/tvg-logo="([^"]+)"/);
-                    if (logoMatch) {
-                        channel.logo = logoMatch[1];
-                    } else {
-                        channel.logo = `https://picsum.photos/seed/${channel.name.replace(/\s+/g, '')}/60/60.jpg`;
-                    }
-                    
-                    const countryMatch = line.match(/tvg-id="[^"]*@([^"]+)"/);
-                    if (countryMatch) {
-                        channel.country = countryMatch[1];
-                    } else {
-                        channel.country = 'International';
-                    }
-                    
-                    // Déterminer la catégorie de sport
-                    channel.category = getCategory(channel.name);
-                } else if (line && !line.startsWith('#') && channel.name) {
-                    // URL de la chaîne
-                    channel.url = line;
-                    channels.push({...channel});
+                if (!line) continue;
+
+                if (line.startsWith('#EXTINF')) {
                     channel = {};
+                    const nameMatch = line.match(/,(.+)$/);
+                    channel.name = nameMatch ? nameMatch[1].trim() : 'Inconnu';
+
+                    const logoMatch = line.match(/tvg-logo="([^"]+)"/);
+                    channel.logo = logoMatch ? logoMatch[1] : generatePlaceholder(channel.name);
+
+                    const countryMatch = line.match(/tvg-country="([^"]+)"/);
+                    channel.country = countryMatch ? countryMatch[1] : 'International';
+
+                    const groupMatch = line.match(/group-title="([^"]+)"/);
+                    channel.group = groupMatch ? groupMatch[1] : '';
+
+                    channel.category = getCategory(channel.name, channel.group);
+                } else if (!line.startsWith('#') && channel) {
+                    channel.url = line;
+                    channels.push(channel);
+                    channel = null;
                 }
             }
-            
+
             filteredChannels = [...channels];
             displayChannels();
         }
 
-        // Déterminer la catégorie de sport en fonction du nom de la chaîne
-        function getCategory(name) {
-            const nameLower = name.toLowerCase();
-            
-            if (nameLower.includes('football') || nameLower.includes('soccer') || 
-                nameLower.includes('futbol') || nameLower.includes('premier') || 
-                nameLower.includes('la liga') || nameLower.includes('serie a') || 
-                nameLower.includes('bundesliga') || nameLower.includes('ligue 1')) {
-                return 'football';
-            } else if (nameLower.includes('basketball') || nameLower.includes('nba') || 
-                      nameLower.includes('basket')) {
-                return 'basketball';
-            } else if (nameLower.includes('tennis') || nameLower.includes('atp') || 
-                      nameLower.includes('wta')) {
-                return 'tennis';
-            } else if (nameLower.includes('motor') || nameLower.includes('racing') || 
-                      nameLower.includes('moto') || nameLower.includes('f1') || 
-                      nameLower.includes('nascar')) {
-                return 'motorsport';
+        // Placeholder SVG inline (pas de dépendance réseau)
+        function generatePlaceholder(name) {
+            const letter = (name || '?').charAt(0).toUpperCase();
+            const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><rect width='60' height='60' rx='30' fill='%239d00ff'/><text x='50%25' y='50%25' font-size='24' font-family='sans-serif' font-weight='bold' text-anchor='middle' dy='.35em' fill='%23ffffff'>${letter}</text></svg>`;
+            return `data:image/svg+xml,${svg}`;
+        }
+
+        // Déterminer la catégorie
+        function getCategory(name, group) {
+            const text = ((name || '') + ' ' + (group || '')).toLowerCase();
+
+            if (text.includes('news') || text.includes('cnn') || text.includes('abc') ||
+                text.includes('cbs') || text.includes('nbc') || text.includes('fox news') ||
+                text.includes('reuters') || text.includes('newsmax') || text.includes('weathernation')) {
+                return 'news';
             }
-            
+            if (text.includes('bloomberg') || text.includes('cnbc') || text.includes('biz tv') ||
+                text.includes('business') || text.includes('economy') || text.includes('economies')) {
+                return 'economies';
+            }
+            if (text.includes('nasa') || text.includes('science') || text.includes('docurama')) {
+                return 'science';
+            }
+            if (text.includes('comedy') || text.includes('music') || text.includes('buzzr') ||
+                text.includes('retro') || text.includes('stadium') || text.includes('botflix') ||
+                text.includes('drybar')) {
+                return 'divertissement';
+            }
             return 'other';
         }
 
@@ -1087,46 +947,59 @@ https://hls.botflix.tv/radioo/index.m3u8;
             const startIndex = (currentPage - 1) * channelsPerPage;
             const endIndex = startIndex + channelsPerPage;
             const channelsToShow = filteredChannels.slice(startIndex, endIndex);
-            
+
             if (channelsToShow.length === 0) {
                 container.innerHTML = '<div class="no-results">Aucune chaîne trouvée</div>';
+                updatePagination();
                 return;
             }
-            
+
             container.innerHTML = '';
-            
             channelsToShow.forEach(channel => {
                 const card = document.createElement('div');
                 card.className = 'channel-card';
                 if (currentChannel && currentChannel.url === channel.url) {
                     card.classList.add('active');
                 }
-                
-                card.innerHTML = `
-                    <img src="${channel.logo}" alt="${channel.name}" onerror="this.src='https://picsum.photos/seed/error/60/60.jpg'">
-                    <div class="channel-details">
-                        <div class="channel-title">${channel.name}</div>
-                        <div class="channel-country">${channel.country}</div>
-                    </div>
+
+                const img = document.createElement('img');
+                img.src = channel.logo;
+                img.alt = channel.name;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = generatePlaceholder(channel.name);
+                };
+
+                const details = document.createElement('div');
+                details.className = 'channel-details';
+                details.innerHTML = `
+                    <div class="channel-title">${escapeHtml(channel.name)}</div>
+                    <div class="channel-country">${escapeHtml(channel.country)}</div>
                 `;
-                
-                card.addEventListener('click', () => playChannel(channel));
+
+                card.appendChild(img);
+                card.appendChild(details);
+                card.addEventListener('click', (e) => playChannel(channel, e.currentTarget));
                 container.appendChild(card);
             });
-            
+
             updatePagination();
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
         }
 
         // Mettre à jour la pagination
         function updatePagination() {
             const pagination = document.getElementById('pagination');
             const totalPages = Math.ceil(filteredChannels.length / channelsPerPage);
-            
             pagination.innerHTML = '';
-            
             if (totalPages <= 1) return;
-            
-            // Bouton précédent
+
             const prevBtn = document.createElement('div');
             prevBtn.className = 'page-btn';
             prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
@@ -1137,15 +1010,11 @@ https://hls.botflix.tv/radioo/index.m3u8;
                 }
             });
             pagination.appendChild(prevBtn);
-            
-            // Numéros de page
+
             for (let i = 1; i <= totalPages; i++) {
                 if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
                     const pageBtn = document.createElement('div');
-                    pageBtn.className = 'page-btn';
-                    if (i === currentPage) {
-                        pageBtn.classList.add('active');
-                    }
+                    pageBtn.className = 'page-btn' + (i === currentPage ? ' active' : '');
                     pageBtn.textContent = i;
                     pageBtn.addEventListener('click', () => {
                         currentPage = i;
@@ -1159,8 +1028,7 @@ https://hls.botflix.tv/radioo/index.m3u8;
                     pagination.appendChild(dots);
                 }
             }
-            
-            // Bouton suivant
+
             const nextBtn = document.createElement('div');
             nextBtn.className = 'page-btn';
             nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
@@ -1174,92 +1042,101 @@ https://hls.botflix.tv/radioo/index.m3u8;
         }
 
         // Jouer une chaîne
-        function playChannel(channel) {
+        function playChannel(channel, cardElement) {
             currentChannel = channel;
-            
-            // Mettre à jour les informations de la chaîne
+
             document.getElementById('current-logo').src = channel.logo;
             document.getElementById('current-name').textContent = channel.name;
-            
-            // Cacher les messages d'erreur
             document.getElementById('error-message').style.display = 'none';
-            
-            // Mettre à jour l'état actif des cartes
+
             document.querySelectorAll('.channel-card').forEach(card => {
                 card.classList.remove('active');
             });
-            event.currentTarget.classList.add('active');
-            
-            // Afficher le chargement
+            if (cardElement) cardElement.classList.add('active');
+
             showLoading(true);
-            
-            // Arrêter la lecture précédente
-            if (hls) {
-                hls.destroy();
-                hls = null;
-            }
-            
-            // Charger et jouer la chaîne
+            destroyHls();
             loadVideo(channel.url);
-            
-            // Faire défiler vers le lecteur
-            document.querySelector('.player-container').scrollIntoView({ 
+
+            document.querySelector('.player-container').scrollIntoView({
                 behavior: 'smooth',
                 block: 'center'
             });
         }
 
+        function destroyHls() {
+            if (hls) {
+                try { hls.destroy(); } catch (e) { console.warn(e); }
+                hls = null;
+            }
+            // Réinitialiser le src natif
+            try {
+                video.pause();
+                video.removeAttribute('src');
+                video.load();
+            } catch (e) { /* ignore */ }
+        }
+
         // Charger une vidéo
         function loadVideo(url) {
-            // Vérifier si le navigateur supporte nativement HLS
+            clearTimeout(loadingTimeout);
+            loadingTimeout = setTimeout(() => {
+                showLoading(false);
+                showError('Le flux met trop de temps à répondre');
+            }, 15000);
+
             if (video.canPlayType('application/vnd.apple.mpegurl')) {
                 video.src = url;
-                video.play().catch(e => {
-                    console.error('Erreur de lecture:', e);
+                video.play().catch(err => {
+                    console.error('Erreur de lecture:', err);
                     showError('Erreur lors de la lecture de la chaîne');
                 });
-            } else if (Hls.isSupported()) {
-                // Utiliser HLS.js
+            } else if (window.Hls && Hls.isSupported()) {
                 hls = new Hls({
                     debug: false,
                     enableWorker: true,
                     lowLatencyMode: true,
                     backBufferLength: 90
                 });
-                
+
                 hls.loadSource(url);
                 hls.attachMedia(video);
-                
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play().catch(e => {
-                        console.error('Erreur de lecture:', e);
+
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    video.play().catch(err => {
+                        console.error('Erreur de lecture:', err);
                         showError('Erreur lors de la lecture de la chaîne');
                     });
                 });
-                
-                hls.on(Hls.Events.ERROR, function(event, data) {
+
+                hls.on(Hls.Events.ERROR, (event, data) => {
                     console.error('Erreur HLS:', data);
                     if (data.fatal) {
-                        showError('Erreur de chargement du flux');
+                        switch (data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                showError('Erreur réseau — le flux est peut-être indisponible');
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                showError('Erreur média — flux corrompu');
+                                break;
+                            default:
+                                showError('Erreur de chargement du flux');
+                                destroyHls();
+                                break;
+                        }
                     }
                 });
             } else {
                 showError('Votre navigateur ne supporte pas la lecture de flux HLS');
             }
-            
-            // Masquer le chargement après un certain temps
-            setTimeout(() => {
-                showLoading(false);
-            }, 3000);
         }
 
-        // Afficher/masquer le chargement
         function showLoading(show) {
             const loading = document.getElementById('loading');
             loading.style.display = show ? 'flex' : 'none';
+            if (!show) clearTimeout(loadingTimeout);
         }
 
-        // Afficher une erreur
         function showError(message) {
             const errorElement = document.getElementById('error-message');
             errorElement.textContent = message;
@@ -1271,41 +1148,31 @@ https://hls.botflix.tv/radioo/index.m3u8;
         function setupEventListeners() {
             // Recherche
             document.getElementById('search-input').addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-                
-                if (searchTerm === '') {
-                    filteredChannels = [...channels];
-                } else {
-                    filteredChannels = channels.filter(channel => 
-                        channel.name.toLowerCase().includes(searchTerm) ||
-                        channel.country.toLowerCase().includes(searchTerm)
-                    );
-                }
-                
-                currentPage = 1;
-                displayChannels();
+                searchTerm = e.target.value.toLowerCase().trim();
+                applyFilters();
             });
-            
+
             // Filtres
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
                     activeFilter = this.dataset.filter;
-                    
-                    if (activeFilter === 'all') {
-                        filteredChannels = [...channels];
-                    } else {
-                        filteredChannels = channels.filter(channel => 
-                            channel.category === activeFilter
-                        );
-                    }
-                    
-                    currentPage = 1;
-                    displayChannels();
+                    applyFilters();
                 });
             });
+        }
+
+        function applyFilters() {
+            filteredChannels = channels.filter(channel => {
+                const matchesSearch = !searchTerm ||
+                    channel.name.toLowerCase().includes(searchTerm) ||
+                    channel.country.toLowerCase().includes(searchTerm);
+                const matchesFilter = activeFilter === 'all' || channel.category === activeFilter;
+                return matchesSearch && matchesFilter;
+            });
+            currentPage = 1;
+            displayChannels();
         }
     </script>
 </body>
